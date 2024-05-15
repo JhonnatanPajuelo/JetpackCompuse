@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.jhonnatan.jetpackcompuse.ui.theme.JetpackCompuseTheme
 
@@ -26,14 +27,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background)
                     {
-                        Greeting()
+                        MyText()
                     }
 
                 }
             }
         }
     }
-
+//Elementos del preview
+@Preview (showBackground = true,name = "Name de my Preview", showSystemUi = true,apiLevel = 33, device = Devices.PIXEL)
+@Composable
+fun MyText(){
+    Text(text = "Hello Jhonnatan")
+}
 
 @Composable
 fun Greeting( ) {
