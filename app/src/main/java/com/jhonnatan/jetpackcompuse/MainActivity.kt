@@ -40,8 +40,7 @@ class MainActivity : ComponentActivity() {
             JetpackCompuseTheme {
                 //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     HappyBirthday()
                 }
@@ -55,9 +54,7 @@ class MainActivity : ComponentActivity() {
 fun ContadorAlPresionar() {
     var conteo by remember { mutableStateOf(0) }
     //Modifier me sirbe para agregarle nuevos atributos al elemento
-    Text(text = "Conteo: $conteo".toString(),
-        Modifier
-            .clickable { conteo++ })
+    Text(text = "Conteo: $conteo".toString(), Modifier.clickable { conteo++ })
 }
 
 @Composable
@@ -74,19 +71,26 @@ fun MyBox() {
                 .height(50.dp)
                 .verticalScroll(
                     rememberScrollState()
-                )) {
-                    Text(text = "Hola soy un Focking Box")
-                }
+                )
+        ) {
+            Text(text = "Hola soy un Focking Box")
+        }
     }
 }
 
 @Composable
-fun HappyBirthday(){
+fun HappyBirthday() {
     Box(
         Modifier
             .fillMaxSize()
-            .background(Color.Red),Alignment.Center){
-        Text(text = "Happy Birthday Valery",Modifier.background(Color.White).padding(16.dp))
+            .background(Color.Red), Alignment.Center
+    ) {
+        Text(
+            text = "Happy Birthday Valery",
+            Modifier
+                .background(Color.White)
+                .padding(16.dp)
+        )
 
     }
 }
