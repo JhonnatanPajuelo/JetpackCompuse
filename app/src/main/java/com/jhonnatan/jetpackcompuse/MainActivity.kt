@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyBox()
+                    HappyBirthday()
                 }
 
             }
@@ -79,11 +80,21 @@ fun MyBox() {
     }
 }
 
+@Composable
+fun HappyBirthday(){
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color.Red),Alignment.Center){
+        Text(text = "Happy Birthday Valery",Modifier.background(Color.White).padding(16.dp))
+
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        MyBox()
+        HappyBirthday()
     }
 }
