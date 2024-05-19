@@ -9,7 +9,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -144,11 +146,17 @@ fun MyColumn() {
 
 @Composable
 fun PeruvianFlag() {
-    Column(Modifier.fillMaxSize(), Arrangement.Center,Alignment.CenterHorizontally) {
-
-
-        Text(text = "Peruvian Flag",Modifier.padding(bottom = 12.dp))
-        Row(Modifier.padding(horizontal = 50.dp)) {
+    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp), Alignment.Center){
+            Text(text = "Peruvian Flag")
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)) {
             Text(
                 text = " ",
                 Modifier
@@ -174,10 +182,44 @@ fun PeruvianFlag() {
     }
 }
 
+@Composable
+//Ejercicio 1 de la seccion Layouts en Jetpack Compose
+fun Exercise1(){
+    Column(Modifier.fillMaxSize()){
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Cyan),Alignment.Center){
+            Text(text = "Ejemplo1")
+        }
+        Row(Modifier.fillMaxWidth().weight(1f)) {
+            Box(Modifier.background(Color.Red).fillMaxHeight().weight(1f),Alignment.Center){
+                Text(text = "Ejemplo2")
+            }
+            MySpacerWidth(30)
+            Box(Modifier.background(Color.Green).fillMaxHeight().weight(1f),Alignment.Center){
+                Text(text = "Ejemplo3")
+            }
+        }
+        Box(Modifier.fillMaxWidth().weight(1f).background(Color.Magenta),Alignment.BottomCenter){
+            Text(text = "Ejemplo 4")
+        }
+    }
+}
+
+@Composable
+fun MySpacerWidth(size:Int){
+    Spacer(Modifier.width(size.dp))
+}
+@Composable
+fun MySpacerHeight(size:Int){
+    Spacer(Modifier.height(size.dp))
+}
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        PeruvianFlag()
+        Exercise1()
     }
 }
