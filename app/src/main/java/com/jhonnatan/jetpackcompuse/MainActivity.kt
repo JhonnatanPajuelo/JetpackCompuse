@@ -6,7 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -42,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    HappyBirthday()
+                    MyColumn()
                 }
 
             }
@@ -95,10 +100,84 @@ fun HappyBirthday() {
     }
 }
 
+@Composable
+fun MyColumn() {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    )
+    {
+        Box(
+            Modifier
+                .background(Color.Red)
+                .fillMaxWidth()
+                .weight(1f), Alignment.Center
+        ) {
+            Text(text = "Soy un texto centrado dentro de un Box")
+        }
+        Box(
+            Modifier
+                .background(Color.Green)
+                .fillMaxWidth()
+                .weight(1f), Alignment.Center
+        ) {
+            Text(text = "Soy un texto centrado dentro de un Box")
+        }
+        Box(
+            Modifier
+                .background(Color.Yellow)
+                .fillMaxWidth()
+                .weight(1f), Alignment.Center
+        ) {
+            Text(text = "Soy un texto centrado dentro de un Box")
+        }
+        Box(
+            Modifier
+                .background(Color.Yellow)
+                .fillMaxWidth(), Alignment.Center
+        ) {
+            Text(text = "Soy un texto centrado dentro de un Box")
+        }
+    }
+}
+
+@Composable
+fun PeruvianFlag() {
+    Column(Modifier.fillMaxSize(), Arrangement.Center) {
+
+
+        Text(text = "Peruvian Flag", Modifier.padding(start = 140.dp, bottom = 15.dp))
+        Row(Modifier.padding(horizontal = 50.dp)) {
+            Text(
+                text = " ",
+                Modifier
+                    .background(Color.Red)
+                    .weight(1f)
+                    .height(100.dp)
+            )
+            Text(
+                text = " ",
+                Modifier
+                    .background(Color.White)
+                    .weight(1f)
+                    .height(100.dp)
+            )
+            Text(
+                text = " ",
+                Modifier
+                    .background(Color.Red)
+                    .weight(1f)
+                    .height(100.dp)
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        HappyBirthday()
+        PeruvianFlag()
     }
 }
