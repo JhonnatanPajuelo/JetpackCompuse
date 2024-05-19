@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    MyColumn()
+                    PeruvianFlag()
                 }
 
             }
@@ -144,10 +144,10 @@ fun MyColumn() {
 
 @Composable
 fun PeruvianFlag() {
-    Column(Modifier.fillMaxSize(), Arrangement.Center) {
+    Column(Modifier.fillMaxSize(), Arrangement.Center,Alignment.CenterHorizontally) {
 
 
-        Text(text = "Peruvian Flag", Modifier.padding(start = 140.dp, bottom = 15.dp))
+        Text(text = "Peruvian Flag",Modifier.padding(bottom = 12.dp))
         Row(Modifier.padding(horizontal = 50.dp)) {
             Text(
                 text = " ",
