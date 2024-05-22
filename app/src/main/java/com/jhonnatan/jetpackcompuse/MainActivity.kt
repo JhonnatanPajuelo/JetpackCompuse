@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.jhonnatan.jetpackcompuse.ui.theme.JetpackCompuseTheme
 
 class MainActivity : ComponentActivity() {
@@ -193,16 +194,31 @@ fun Exercise1(){
                 .background(Color.Cyan),Alignment.Center){
             Text(text = "Ejemplo1")
         }
-        Row(Modifier.fillMaxWidth().weight(1f)) {
-            Box(Modifier.background(Color.Red).fillMaxHeight().weight(1f),Alignment.Center){
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)) {
+            Box(
+                Modifier
+                    .background(Color.Red)
+                    .fillMaxHeight()
+                    .weight(1f),Alignment.Center){
                 Text(text = "Ejemplo2")
             }
             MySpacerWidth(30)
-            Box(Modifier.background(Color.Green).fillMaxHeight().weight(1f),Alignment.Center){
+            Box(
+                Modifier
+                    .background(Color.Green)
+                    .fillMaxHeight()
+                    .weight(1f),Alignment.Center){
                 Text(text = "Ejemplo3")
             }
         }
-        Box(Modifier.fillMaxWidth().weight(1f).background(Color.Magenta),Alignment.BottomCenter){
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Magenta),Alignment.BottomCenter){
             Text(text = "Ejemplo 4")
         }
     }
@@ -216,10 +232,77 @@ fun MySpacerWidth(size:Int){
 fun MySpacerHeight(size:Int){
     Spacer(Modifier.height(size.dp))
 }
+
+@Composable
+fun ExerciseContrainLayout(){
+    ConstraintLayout(Modifier.fillMaxSize()){
+        val (box1,box2,box3,box4,box5,Row1)=createRefs()
+        Box(
+            Modifier
+                .size(125.dp)
+                .background(Color.Red)
+                .constrainAs(box1) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }){
+
+        }
+        Box(
+            Modifier
+                .size(125.dp)
+                .background(Color.Green)
+                .constrainAs(box2) {
+                    bottom.linkTo(box1.top)
+                    start.linkTo(box1.end)
+                }){
+
+        }
+        Box(
+            Modifier
+                .size(125.dp)
+                .background(Color.Black)
+                .constrainAs(box3) {
+                    end.linkTo(box1.start)
+                    bottom.linkTo(box1.top)
+                }){
+
+        }
+        Box(
+            Modifier
+                .size(125.dp)
+                .background(Color.Yellow)
+                .constrainAs(box4) {
+                    top.linkTo(box1.bottom)
+                    end.linkTo(box1.start)
+                }){
+
+        }
+        Box(
+            Modifier
+                .size(125.dp)
+                .background(Color.Red)
+                .constrainAs(box5) {
+                    top.linkTo(box1.bottom)
+                    start.linkTo(box1.end)
+                }){
+
+        }
+        Row(Modifier.size(125.dp).constrainAs(Row1){
+            start.linkTo(box3.end)
+            bottom.linkTo(box1.top)
+        }) {
+            Box(Modifier.background(Color.Yellow).weight(1f).fillMaxHeight()){}
+            Box(Modifier.background(Color.LightGray).weight(1f).fillMaxHeight()){}
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        Exercise1()
+        ExerciseContrainLayout()
     }
 }
