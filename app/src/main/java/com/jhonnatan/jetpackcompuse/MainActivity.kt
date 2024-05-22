@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.jhonnatan.jetpackcompuse.ui.theme.JetpackCompuseTheme
 
@@ -316,9 +317,45 @@ fun ContraintExampleGuideLine(){
 
         val bxRed=createRef()
         val guideline = createGuidelineFromTop(0.1f)
-        Box(Modifier.background(Color.Red).size(125.dp).constrainAs(bxRed){
-            top.linkTo(guideline)
-        })
+        Box(
+            Modifier
+                .background(Color.Red)
+                .size(125.dp)
+                .constrainAs(bxRed) {
+                    top.linkTo(guideline)
+                })
+
+    }
+}
+
+@Composable
+fun CadenasConstraint(){
+    ConstraintLayout(Modifier.fillMaxSize())
+    {
+        val (box1,box2,box3)= createRefs()
+        createVerticalChain(box1,box2,box3, chainStyle = ChainStyle.SpreadInside)
+        Box(modifier = Modifier
+            .size(75.dp)
+            .background(Color.Red)
+            .constrainAs(box1) {
+                top.linkTo(parent.top)
+
+            })
+        Box(modifier = Modifier
+            .size(75.dp)
+            .background(Color.Green)
+            .constrainAs(box2) {
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+
+            })
+        Box(modifier = Modifier
+            .size(75.dp)
+            .background(Color.Yellow)
+            .constrainAs(box3) {
+                bottom.linkTo(parent.bottom)
+
+            })
 
     }
 }
@@ -327,6 +364,6 @@ fun ContraintExampleGuideLine(){
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        ContraintExampleGuideLine()
+        CadenasConstraint()
     }
 }
