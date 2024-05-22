@@ -289,20 +289,44 @@ fun ExerciseContrainLayout(){
                 }){
 
         }
-        Row(Modifier.size(125.dp).constrainAs(Row1){
-            start.linkTo(box3.end)
-            bottom.linkTo(box1.top)
-        }) {
-            Box(Modifier.background(Color.Yellow).weight(1f).fillMaxHeight()){}
-            Box(Modifier.background(Color.LightGray).weight(1f).fillMaxHeight()){}
+        Row(
+            Modifier
+                .size(125.dp)
+                .constrainAs(Row1) {
+                    start.linkTo(box3.end)
+                    bottom.linkTo(box1.top)
+                }) {
+            Box(
+                Modifier
+                    .background(Color.Yellow)
+                    .weight(1f)
+                    .fillMaxHeight()){}
+            Box(
+                Modifier
+                    .background(Color.LightGray)
+                    .weight(1f)
+                    .fillMaxHeight()){}
         }
     }
 }
 
-@Preview(showBackground = true)
+@Composable
+fun ContraintExampleGuideLine(){
+    ConstraintLayout(Modifier.fillMaxSize()) {
+
+        val bxRed=createRef()
+        val guideline = createGuidelineFromTop(0.1f)
+        Box(Modifier.background(Color.Red).size(125.dp).constrainAs(bxRed){
+            top.linkTo(guideline)
+        })
+
+    }
+}
+
+@Preview(showBackground = false)
 @Composable
 fun GreetingPreview() {
     JetpackCompuseTheme {
-        ExerciseContrainLayout()
+        ContraintExampleGuideLine()
     }
 }
